@@ -3,9 +3,6 @@ using namespace std;
 int fnum, snum, sum, choice;
 int main()
 {
-    int loop = 1;
-    while (loop==1)
-    {
     cout << "Gantey Calculator" << endl;
     cout << "1. Addition" << endl;
     cout << "2. Subtraction" << endl;
@@ -56,7 +53,6 @@ int main()
         break;
     }
     cout << endl;
-    }
 
     return 0;
 }
