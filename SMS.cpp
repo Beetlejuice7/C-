@@ -2,12 +2,19 @@
 #include<fstream>
 #include<string>
 #include<stdlib.h>
+#include<stdio.h>
+using namespace std;
+
+
 void student();
 void account();
 void result();
-using namespace std;
-ofstream outfile;
-ifstream infile;
+void addstd();
+
+//ofstream outfile;
+//ifstream infile;
+
+
 struct student
 {
     char name[20];
@@ -25,6 +32,7 @@ int main()
     cout << hero;
     myfile.close();*/
     
+    system("clear");
 
     int choice;
 
@@ -49,6 +57,9 @@ int main()
         result();
         break;
 
+    case 4 :
+        exit(0);    
+
     default:
         cout <<"Invalid Selection\n";
         break;
@@ -60,7 +71,7 @@ int main()
 
 void student()
 {
-    
+    system("clear");
     int choice;
     cout <<"1. Add student\n";
     cout <<"2. Edit student\n";
@@ -71,17 +82,11 @@ void student()
     {
 
     case 1 :
-        cout <<"Enter the name of the student : ";
-        outfile.open("std.txt");
-        cin >> std1.name;
-        outfile << std1.name;
-        cout <<"Enter the age of student : ";
-        cin >> std1.age;
-        outfile << std1.age;
+        addstd();
         break;
     
     case 2 :
-        cout <<"hello";
+        
         break;
 
     case 3 :
@@ -99,4 +104,25 @@ void account()
 void result()
 {
     cout <<"hello";
+}
+
+void addstd()
+{
+    char x;
+    do{
+    system("clear");
+    fstream file;
+    file.open("std.txt", ios :: app | ios :: out);
+    cout << "Enter the name of the student : ";
+    cin >> std1.name;
+    cout << "Enter the age of student : ";
+    cin >> std1.age;
+    cout << "Enter faculty : ";
+    cin >> std1.faculty;
+    file << " " << std1.name << " " << std1.age << " " << std1.faculty << "\n";
+    file.close();
+    cout << "Add another student record?(y/n) : ";
+    cin >> x;
+    }while(x=='y');
+    student();
 }
