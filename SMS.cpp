@@ -3,6 +3,7 @@
 #include<string>
 #include<stdlib.h>
 #include<stdio.h>
+#include<iomanip>
 using namespace std;
 
 fstream file;
@@ -14,12 +15,12 @@ void result();
 
 //2
 void addstd();
-void show();
+void showstd();
 
 struct student
 {
     char name[20];
-    int age;
+    int age, id;
     char faculty[15];
 }std1;
 
@@ -90,7 +91,7 @@ void student()
         break;
     
     case 2 :
-        show();
+        showstd();
         break;
 
     case 3 :
@@ -120,41 +121,38 @@ void addstd()
     system("clear");
     cout << "-----------STUDENT MANAGEMENT SYSTEM--------------" << endl << endl;
     file.open("std.txt", ios :: app | ios :: out);
+    cout << "Enter id of the student : ";
+    cin >> std1.id;
     cout << "Enter the name of the student : ";
     cin >> std1.name;
     cout << "Enter the age of student : ";
     cin >> std1.age;
     cout << "Enter faculty : ";
     cin >> std1.faculty;
-    file << " " << std1.name << " " << std1.age << " " << std1.faculty << "\n";
+    file << " " << std1.id << " " << std1.name<< " " << std1.age << " " << std1.faculty << "\n";
     file.close();
     cout << "Add another student record?(y/n) : ";
     cin >> x;
     }while(x=='y' || x=='Y');
     student();
 }
-void show()
+void showstd()
 {
     system("clear");
     char back;
     int total = 1;
     file.open("std.txt", ios :: in);
-    file >> std1.name >> std1.age >> std1.faculty;
-    cout << "-----------------------------------------------------------------------------------------\n";
-    cout << "|   SN   |\t\tName\t\t|\tAge\t|\t\tFaculty\t\t|\n";
-    cout << "-----------------------------------------------------------------------------------------\n";
+    file >> std1.id >> std1.name >> std1.age >> std1.faculty;
+    cout << "---------------------------------------------------------------------------------------------------------\n";
+    cout << "|   SN   |\t\tName\t\t|\tAge\t|\t\tFaculty\t\t|\tID\t|\n";
+    cout << "---------------------------------------------------------------------------------------------------------\n";
     while(!file.eof())
     {
 
-        cout << "| "<< setw(4) << total<< "   | " << setw(29) << std1.name << "| " << setw(14) << std1.age << "| " << setw(30) << std1.faculty << "| ";
+        cout << "| "<< setw(4) << total<< "   | " << setw(29) << std1.name << "| " << setw(14) << std1.age << "| " << setw(29) << std1.faculty << " | " << setw(13) << std1.id << " |";
         cout << endl;
-        cout << "-----------------------------------------------------------------------------------------\n";
-        /*cout << "Student number "<< total << endl;
-        cout << "Student name : " << std1.name << endl;
-        cout << "Student age : " << std1.age << endl;
-        cout << "Student faculty : " << std1.faculty << endl;
-        cout << "\n\n";*/
-        file >> std1.name >> std1.age >> std1.faculty;
+        cout << "---------------------------------------------------------------------------------------------------------\n";
+        file >> std1.id >> std1.name >> std1.age >> std1.faculty;
         total += 1;
     }
     file.close();
